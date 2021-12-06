@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Notes</title>
+    </head>
+
+
+    <body>
+		<h1>Welcome to Notes!</h1>
+
+        <table>
+		<tr>
+		<th style="text-align:left">Logged in as: <td>{{username}} 
+		</table>
+
+
+        <form action='/logout'>
+            <input type="submit" value="Logout"/>
+        </form>
+		
+        <h2>Your notes</h2>
+
+        <table>
+		{% for note in notes %}
+        <ul>
+		<li>{{note}}</li>
+        </ul>
+		{% endfor %}
+		</table>
+
+        <h1>Add note</h1>
+
+        <form action='/add/' method="POST" enctype="multipart/form-data">
+			<input type="text" name="content" id="content"/>
+            <input type="submit" value="Add"/>
+        </form>
+    </body>
+
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<head>
+    <title>Login</title>
+</head>
+
+<h1>Login</h1>
+
+<form action="/login/" method="post">
+    <input type="text" name="username">
+    <input type="text" name="password">
+    <input type="submit" name="Log in" value="Log in">
+</form>
+<tr></tr>
+{% if messages %}
+
+    {% for message in messages %}
+    <p style="color:red;">{{message}}</p>
+    {% endfor %}
+
+{% endif %}
+<a href="signup/">Don't have an account yet? Click here to sign up!</a> 
+
+
+
