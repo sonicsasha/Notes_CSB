@@ -22,8 +22,7 @@ def signUpView(request):
         if request.POST.get("username") != None and request.POST.get("password") != None:
             user=User(username=request.POST.get("username"), password=request.POST.get("password"))
             user.save()
-            print("User created!")
-            messages.info(request, "Account succesfully created. Please login with the credentials you entered!")
+            messages.success(request, "Account succesfully created. Please login with the credentials you entered!")
             return HttpResponseRedirect("/")
     return render(request, "pages/signup.html")
 
@@ -31,23 +30,18 @@ def signUpView(request):
 def logInView(request):
     try:
         if request.method == "POST":
-            if request.POST.get("username") != None and request.POST.get("password") != None:
-                user=User.objects.filter(username=request.POST.get("username"))
-                print(f"Username is: {user[0].username}")
-                print(user.exists())
-                if user.exists()==False and user[0].password==request.POST.get("password"):
-                    print("nope")
-                    messages.error(request, "User not found. Please try again!")
+            if request.POST.get("username") != None and request.POST.get("password") != None: #Is the link valid?
+                user=User.objects.filter(username=request.POST.get("username")) #Get the entered username from the users database.
+                if user.exists()==False or user[0].password!=request.POST.get("password"): #Was the user's information found and is the password valid?
+                    messages.error(request, "User not found or the password is incorrect. Please try again!")
                     return HttpResponseRedirect("/")
                 request.session["username"]=user[0].username
                 return HttpResponseRedirect("/notes/")
         return render(request, "pages/login.html")
     except:
-        print("Log in failed!")
         return render(request, "pages/login.html")
 
 def notesView(request):
-    print(request.session["username"])
     try:
         if request.session["username"]==None:
             return HttpResponseRedirect("/login/")

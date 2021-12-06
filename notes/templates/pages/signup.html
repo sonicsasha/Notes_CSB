@@ -5,8 +5,10 @@
 <h1>Sign up</h1>
 
 <form action="/signup/" method="post">
-    <input type="text" name="username">
-    <input type="text" name="password">
+    Username:<br> 
+    <input type="text" name="username"><br>
+    Password:<br>
+    <input type="text" name="password"><br>
     <input type="submit" name="Sign up", value="Sign up">
 </form>
 <tr></tr>
@@ -17,7 +19,7 @@
     {% endfor %}
 
 {% endif %}
-<a href="signup/">Already have an account? Click here to log in!</a> 
+<a href="/login/">Already have an account? Click here to log in!</a> 
 
 
 
